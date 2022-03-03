@@ -21,7 +21,7 @@
                     <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
                 <li
-                        {% if '/about' == request.path %}
+                        {% if 'about' in request.path %}
                             class="nav-item active mr-3"
                         {% else %}
                             class="nav-item mr-3"
@@ -30,18 +30,16 @@
                     <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
                 <li
-                        {% if '/score_game' == request.path %}
+                        {% if 'games' in request.path %}
                             class="nav-item active mr-3"
                         {% else %}
                             class="nav-item mr-3"
                         {% endif %}
                 >
-                    <a class="nav-link" href="{% url 'index' %}">Score
-                        Game
-                    </a>
+                    <a class="nav-link" href="{% url 'games' %}">Games</a>
                 </li>
                 <li
-                        {% if '/upload_video' == request.path %}
+                        {% if 'games' in request.path %}
                             class="nav-item active mr-3"
                         {% else %}
                             class="nav-item mr-3"
