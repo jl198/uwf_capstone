@@ -32,17 +32,21 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.postgres',
+    'django_admin_hstore_widget',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
     'games.apps.GamesConfig',
     'upload.apps.UploadConfig',
+
+    'ckeditor',
 
 
 ]
