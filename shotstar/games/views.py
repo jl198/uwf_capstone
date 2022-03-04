@@ -1,11 +1,11 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render
-from django.conf import settings
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import Game
 
 
 def index(request):
-    print(settings.MEDIA_URL)
     games = Game.objects.all().filter(creator_id=request.user)
     rounds = []
     for round in Game.objects.all().values_list(
@@ -35,8 +35,34 @@ def index(request):
 
 
 def game(request, game_id):
-    return render(request, 'games/game.html')
+    current_game = get_object_or_404(Game, pk=game_id)
+    print(f'{current_game.video}')
+    context = {
+        'game': current_game
+    }
+    return render(request, 'games/game.html', context)
 
 
-def create_game(request):
-    return render(request, 'games/create_game.html')
+def new_game(request):
+    # user = request.user.username
+    # print(f'{user=}')
+    # if user is not None and request.method == 'POST':
+    #     # Get form values
+    #     creator_id = request.user
+    #     date_played = request.POST['date_played']
+    #     number_of_players = request.POST['number_of_players']
+    #     creator_station_start = request.POST['creator_station_start']
+    #     video = request.POST['video']
+    #
+    #     new_game = Game.objects.create(
+    #         creator_id=creator_id,
+    #         date_played=date_played,
+    #         number_of_players=number_of_players,
+    #         creator_station_start=creator_station_start,
+    #         video=video
+    #     )
+    #     new_game.save()
+    #     messages.success(request, "Game successfully created!")
+    #     return redirect('games')
+    # else:
+        return render(request, 'games/new_game.html')
