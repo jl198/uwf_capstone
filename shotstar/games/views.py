@@ -1,10 +1,11 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
-
+from django.conf import settings
 from .models import Game
 
 
 def index(request):
+    print(settings.MEDIA_URL)
     games = Game.objects.all().filter(creator_id=request.user)
     rounds = []
     for round in Game.objects.all().values_list(
